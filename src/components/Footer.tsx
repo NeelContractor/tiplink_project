@@ -21,8 +21,7 @@ export default function() {
                 <a href="/">
                     <Image src={"/tiplinkLogo.svg"} alt={"TipLink Logo"} width={100} height={100} />
                 </a>
-                {/* TODo add github repo link */}
-                <a href="">
+                <a href="https://github.com/NeelContractor/tiplink_project">
                     <Image src={"/github_logo.png"} alt={"Github Logo"} width={25} height={25} />
                 </a>
                 <h1 className="text-gray-400">@2025 TipLink. All rights reserved.</h1>
@@ -36,7 +35,9 @@ export default function() {
                 <div className="grid">
                     <h1 className="font-bold text-gray-500">Company</h1>
                     <h3 className="text-gray-400">FAQ</h3>
-                    <h3 className="text-gray-400">Github</h3>
+                    <a href="https://github.com/NeelContractor/tiplink_project">
+                        <h3 className="text-gray-400">Github</h3>
+                    </a>
                 </div>
             </div>
         </div>
