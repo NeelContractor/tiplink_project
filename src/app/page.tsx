@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
     if (session.data?.user) {
-      router.push("/wallet");
+      router.push("/dashboard");
     }
 
   return (
@@ -28,7 +28,7 @@ export default function Home() {
         <h1 className="flex justify-center pt-4 text-2xl text-gray-500">Create a frictionless wallet with just a Google Account.</h1>
         <div className="flex justify-center pt-10">
           <PrimaryButton children={"Sign Up with Google"} onClick={() => {
-            signIn("google", { callbackUrl: "/wallet" })
+            signIn("google", { callbackUrl: "/dashboard" })
           }} />
         </div>
       </div>

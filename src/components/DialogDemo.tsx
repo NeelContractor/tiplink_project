@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 
 export default function DialogDemo() {
   const [userWallet, setUserWallet] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
   const qrRef = useRef<HTMLDivElement | null>(null);
 
 
@@ -32,14 +31,9 @@ export default function DialogDemo() {
       qr.append(qrRef.current as HTMLElement);
   }, [userWallet]);
 
-  const handleCopy = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
-    } catch {
-      // optionally handle copy failure
-    }
+  const handleCopy = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
   };
 
   return (
@@ -57,19 +51,17 @@ export default function DialogDemo() {
         {userWallet ? (
           <div className="grid justify-center items-center gap-4 py-4">
             <div className="flex justify-center" ref={qrRef} />
-            <button 
-              className="text-sm font-mono break-all hover:cursor-pointer hover:underline" 
-              title="Click to Copy"
-                onClick={() => {
-                  handleCopy(userWallet)
-                }}
-                  >{userWallet}</button>
+            <div 
+              className="flex w-full text-sm font-mono break-all " 
+            >
+              <span className='font-medium pr-2'>{userWallet.slice(0, 30) + "..."}</span>
+              <img width="25" height="25" src="https://img.icons8.com/material-rounded/50/copy.png" alt="copy" onClick={() => handleCopy(userWallet)} className='hover:cursor-pointer' title='Copy' />
+            </div>
           </div>
         ) : (
           <div className="text-red-500">No wallet found for user.</div>
         )}
         <DialogFooter>
-          <Button type="button">Done</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

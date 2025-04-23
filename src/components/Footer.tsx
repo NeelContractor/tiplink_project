@@ -29,12 +29,12 @@ export default function() {
             <div className="flex gap-5">
                 <div className="grid">
                     <h1 className="font-bold text-gray-500">Product & Docs</h1>
-                    <h3 className="text-gray-400">Create TipLink</h3>
-                    <h3 className="text-gray-400">Documentation</h3>
+                    <a href="/" className="text-gray-400">Create TipLink</a>
+                    <a href="/docs" className="text-gray-400">Documentation</a>
                 </div>
                 <div className="grid">
                     <h1 className="font-bold text-gray-500">Company</h1>
-                    <h3 className="text-gray-400">FAQ</h3>
+                    <a href="/faq" className="text-gray-400">FAQ</a>
                     <a href="https://github.com/NeelContractor/tiplink_project">
                         <h3 className="text-gray-400">Github</h3>
                     </a>

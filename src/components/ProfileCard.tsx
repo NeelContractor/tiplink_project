@@ -7,9 +7,8 @@ import { useEffect, useState } from "react";
 import { TokenWithbalance, useTokens } from "../app/api/hooks/useTokens";
 import { TokenList } from "./TokenList";
 import { Swap } from "./Swap";
-import { Connection, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
-import { connection } from "@/lib/constants";
 import axios from "axios";
+import { Skeleton } from "./ui/skeleton";
 
 type Tab = "tokens" | "send" | "swap" // | "withdraw" | "add_funds" 
 const tabs: {id: Tab; name: string}[] = [
@@ -30,7 +29,7 @@ export const ProfileCard = ({ publicKey }: {
 
     if (session.status === "loading") {
         // TODO: add skeleton
-        return <div>
+        return <div className="flex justify-center items-center text-gray-400 font-bold">
             Loading...
         </div>
     }
@@ -46,7 +45,7 @@ export const ProfileCard = ({ publicKey }: {
             image={session.data.user.image ?? ""} 
             name={session.data?.user?.name ?? ""} 
         />
-        <div className="w-full flex px-10">
+        <div className="w-full flex px-10 rounded-b-lg">
             {tabs.map(tab => <TabButton key={tab.id} active={tab.id === selectedTab} onClick={() => {
                 setSelectedTab(tab.id)
             }}>{tab.name}</TabButton>)}
@@ -63,67 +62,47 @@ export const ProfileCard = ({ publicKey }: {
 function Send() {
     const [receiverPubkey, setReceiverPubky] = useState<string>('');
     const [sendAmount, setSendAmount] = useState<number>(0);
-    const [loading, setLoading] = useState<boolean>(false)
-    const [sendRes, setSendRes] = useState<string | null>(null)
     const [sign, setSign] = useState("");
 
     async function sendTokens() {
-        setLoading(true);
         await axios.post(`/api/send?receiver=${receiverPubkey}&amount=${sendAmount}`)
             .then((res) => {
-                // setSendRes(res.data.sign)
                 setSign(`https://explorer.solana.com/tx/${res.data.sign}?cluster=devnet`)
-                // console.log("res.data", res.data.sign)
-                // setReceiverPubky("")
-                // setSendAmount(0);
-                // setLoading(false)
-            })
-            .catch((e) => {
-                console.log(e);
-                setLoading(false)
-            })
-            .finally(() => {
-                setLoading(false)
             })
     }
 
-    useEffect(() => {
-        if (sendRes) {
-            
-        }
-    }, [sendRes])
-
-
     return (
-        <div className="grid gap-4 justify-center py-10">
-            <input 
-                placeholder="Recevier Public Key" 
-                type="text" 
-                value={receiverPubkey}
-                onChange={(e) => {
-                    setReceiverPubky(e.target.value);
-                }} 
-                className="p-2 text-lg w-96 border rounded-lg outline-none"
-            />
-            <input 
-                placeholder="Amount to transfer" 
-                type="number" 
-                value={sendAmount}
-                onChange={(e) => {
-                    setSendAmount(Number(e.target.value));
-                }} 
-                className="p-2 text-lg w-96 border rounded-lg outline-none"
-            />
+        <div className="grid gap-4 justify-center bg-gray-100 py-10">
+            <div className="grid justify-center gap-4">
+                <input 
+                    placeholder="Recevier Public Key" 
+                    type="text" 
+                    value={receiverPubkey}
+                    onChange={(e) => {
+                        setReceiverPubky(e.target.value);
+                    }} 
+                    className="p-2 text-lg w-96 border rounded-lg outline-none"
+                />
+                <input 
+                    placeholder="Amount to transfer" 
+                    type="number" 
+                    value={sendAmount}
+                    onChange={(e) => {
+                        setSendAmount(Number(e.target.value));
+                    }} 
+                    className="p-2 text-lg w-96 border rounded-lg outline-none"
+                />
+            </div>
             <div className="flex justify-center">
-                <button 
-                    className="p-2 px-5 text-lg font-bold rounded-lg hover:cursor-pointer border"
-                    onClick={() => {
-                        sendTokens()
-                    }}
-                >Send</button>
+                <PrimaryButton children={"Send Tokens"} onClick={() => {
+                    sendTokens()
+                }} />
             </div>
             <div className="flex justify-center text-wrap">
                 {sign ? <a href={sign} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Link</a> : null}
+            </div>
+            <div className="flex">
+                <h6 className="flex justify-center text-sm text-gray-500">This send functionality will be implemented using the Devnet. <br />To send the token through Mainnet, we need Mainnet tokens, which we don't have.</h6>
             </div>
         </div>
     )
@@ -156,10 +135,19 @@ function Assets({ publicKey, tokenBalances, loading }: {
     }, [copied])
 
     if (loading) {
-        return "Loading..."
+        return <div className="flex justify-center py-20">
+            <div className="space-y-2">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+                <Skeleton className="h-4 w-[200px]" />
+                <Skeleton className="h-4 w-[200px]" />
+                <Skeleton className="h-4 w-[200px]" />
+            </div>
+        </div>
+        
     }
 
-    return <div className="text-slate-500">
+    return <div className="text-slate-500 bg-gray-100">
     <div className="mx-12 py-2 text-gray-400 font-bold">
         TipLink Account assets
     </div>
@@ -181,7 +169,7 @@ function Assets({ publicKey, tokenBalances, loading }: {
         </div>
     </div>
 
-    <div className="pt-4 bg-slate-50 p-12 mt-4">
+    <div className="pt-4 bg-gray-100 p-12 mt-4">
         <TokenList tokens={tokenBalances?.tokens || []} />
     </div>
 </div>

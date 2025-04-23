@@ -32,7 +32,7 @@ export function Swap({ publicKey, tokenBalances }: {
             })
     }, [baseAsset, quoteAsset, baseAmount])
 
-    return <div className="p-12 bg-slate-50">
+    return <div className="p-12 bg-gray-100">
         <div className="text-2xl font-bold pb-4">
             Swap Tokens
         </div>
@@ -114,7 +114,7 @@ function SwapInputRow({onSelect, amount, onAmountChange, selectedToken, title, s
         <div>
             <input disabled={inputDisabled} onChange={(e) => {
                 onAmountChange?.(e.target.value);
-            }} placeholder="0" type="text" className="bg-slate-50 p-6 outline-none text-4xl" dir="rtl" value={inputLoading ? "Loading" : amount}></input>
+            }} placeholder="0" type="text" className="bg-gray-100 p-6 outline-none text-4xl" dir="rtl" value={inputLoading ? "Loading" : amount}></input>
         </div>
     </div>
 }
@@ -130,7 +130,7 @@ function AssetSelector({selectedToken, onSelect}: {
                 onSelect(selectedToken);
             }
         }} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            {SUPPORTED_TOKENS.map(token => <option key={token.name} selected={selectedToken.name == token.name}>
+            {SUPPORTED_TOKENS.map(token => <option key={token.name} value={token.name}>
                 {token.name}
             </option>)}
         </select>

@@ -9,7 +9,7 @@ let prices: {[key: string]: {
 
 const TOKEN_PRICE_REFRESH_INTERVAL = 60 * 1000; // every 60s
 
-export const connection = new Connection("https://api.mainnet-beta.solana.com");
+export const connection = new Connection("https://api.devnet.solana.com");  // changing into from mainnet-beta to devnet
 
 export async function getSupportedTokens() {
     if (!LAST_UPDATED || new Date().getTime() - LAST_UPDATED > TOKEN_PRICE_REFRESH_INTERVAL) {

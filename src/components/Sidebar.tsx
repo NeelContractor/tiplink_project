@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet"  
 import { signOut, useSession } from "next-auth/react"
 import DialogDemo from "./DialogDemo";
+import { AlertDialogDemo } from "./AlertDailog";
 
 export default function Sidebar() {
 
@@ -37,9 +38,11 @@ export default function Sidebar() {
                     <div className="text-lg font-bold text-black">{session.data?.user?.name}</div>
                     <div className="text-black">{session.data?.user?.email}</div>
                 </div>
-                <button className="hover:cursor-pointer">
+                {/* <button className="hover:cursor-pointer">
                     <img src={"/setting_icon.png"} width={25} height={25}  />
-                </button>
+                </button> */}  
+                {/* above lines removed for testing */}
+                <AlertDialogDemo />
             </div>
         </SheetDescription>
         <SheetDescription>
