@@ -9,6 +9,7 @@ import { TokenList } from "./TokenList";
 import { Swap } from "./Swap";
 import axios from "axios";
 import { Skeleton } from "./ui/skeleton";
+import Image from "next/image";
 
 type Tab = "tokens" | "send" | "swap" // | "withdraw" | "add_funds" 
 const tabs: {id: Tab; name: string}[] = [
@@ -52,7 +53,7 @@ export const ProfileCard = ({ publicKey }: {
         </div>
         
         <div className={`${selectedTab === "tokens" ? "visible" : "hidden"}`}><Assets tokenBalances={tokenBalances} loading={loading} publicKey={publicKey} /> </div>
-        <div className={`${selectedTab === "swap" ? "visible" : "hidden"}`}><Swap tokenBalances={tokenBalances} publicKey={publicKey} /> </div>
+        <div className={`${selectedTab === "swap" ? "visible" : "hidden"}`}><Swap tokenBalances={tokenBalances} /> </div> {/*removed publicKey={publicKey} */}
         <div className={`${selectedTab === "send" ? "visible" : "hidden"}`}><Send /></div>
         {/* <div className={`${(selectedTab !== "swap" && selectedTab !== "tokens" ) ? "visible" : "hidden"}`}><Warning /> </div> */}
     </div> 
@@ -94,25 +95,25 @@ function Send() {
                 />
             </div>
             <div className="flex justify-center">
-                <PrimaryButton children={"Send Tokens"} onClick={() => {
+                <PrimaryButton onClick={() => {
                     sendTokens()
-                }} />
+                }} >Send Tokens</PrimaryButton>
             </div>
             <div className="flex justify-center text-wrap">
                 {sign ? <a href={sign} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Link</a> : null}
             </div>
             <div className="flex">
-                <h6 className="flex justify-center text-sm text-gray-500">This send functionality will be implemented using the Devnet. <br />To send the token through Mainnet, we need Mainnet tokens, which we don't have.</h6>
+                <h6 className="flex justify-center text-sm text-gray-500">This send functionality will be implemented using the Devnet. <br />To send the token through Mainnet, we need Mainnet tokens, which we don&apos;t have.</h6>
             </div>
         </div>
     )
 }
 
-function Warning() {
-    return <div className="bg-slate-50 py-32 px-10 flex justify-center">
-        We dont yet support this feature
-    </div>
-}
+// function Warning() {
+//     return <div className="bg-slate-50 py-32 px-10 flex justify-center">
+//         We dont yet support this feature
+//     </div>
+// }
 
 function Assets({ publicKey, tokenBalances, loading }: {
     publicKey: string; 
@@ -125,7 +126,7 @@ function Assets({ publicKey, tokenBalances, loading }: {
     const [copied, setCopied] = useState(false);
     useEffect(() => {
         if (copied) {
-            let timeout = setTimeout(() => {
+            const timeout = setTimeout(() => {
                 setCopied(false)
             }, 3000)
             return () => {
@@ -181,7 +182,7 @@ function Greeting({
     image: string, name: string
 }) {
     return <div className="flex p-12">
-    <img src={image} className="rounded-full w-16 h-16 mr-4" />
+    <Image src={image} className="rounded-full w-16 h-16 mr-4" alt={"User Profile"} width={100} height={100} />
     <div className="text-2xl font-semibold flex flex-col justify-center">
        Welcome back, {name}
     </div>

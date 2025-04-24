@@ -24,11 +24,11 @@ function Hero() {
                     <div className=' justify-center content-center'>
                         <div className='flex pb-5'>
                         <div className='flex justify-center items-center outline-none rounded-2xl bg-sky-500 font-bold p-3'>
-                            <span><img src={"/wallet_icon.png"} className="size-4 pr-1" /></span>
+                            <span><Image src={"/wallet_icon.png"} alt="Wallet Image" width={100} height={100} className="size-4 pr-1" /></span>
                             TIPLINK WALLET
                         </div>
                         </div>
-                        <h1 className='text-6xl font-bold pb-5'>The world's simplest wallet</h1>
+                        <h1 className='text-6xl font-bold pb-5'>The world&apos;s simplest wallet</h1>
                         <h3 className='text-xl pb-5'>Create or login to your secured TipLink wallet with just 2 clicks:</h3>
                         <button 
                             className='flex justify-between items-center font-bold rounded-2xl text-white bg-[#007cbf] py-2 px-5 hover:cursor-pointer'

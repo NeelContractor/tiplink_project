@@ -7,7 +7,7 @@ export const PrimaryButton = ({children, onClick}: {
     return (
         <button 
             type="button" 
-            className="text-white bg-[#007cbf] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-bold hover:cursor-pointer"
+            className="text-white bg-[#007cbf] font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 text-bold hover:cursor-pointer"
             onClick={onClick}
             >
                 {children}

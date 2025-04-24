@@ -6,8 +6,9 @@ import { Connection, Keypair, VersionedTransaction } from "@solana/web3.js";
 
 export async function POST(req: NextRequest) {
     const connection = new Connection("https://api.mainnet-beta.solana.com");
+    
     const data: {
-        quoteResponse: any
+        quoteResponse: any // eslint-disable-line @typescript-eslint/no-explicit-any
     } = await req.json();
 
     const session = await getServerSession(authConfig);
@@ -51,7 +52,7 @@ export async function POST(req: NextRequest) {
     console.log("JUP returned txn");
 
     const swapTransactionBuf = Buffer.from(swapTransaction, "base64");
-    var transaction = VersionedTransaction.deserialize(swapTransactionBuf);
+    const transaction = VersionedTransaction.deserialize(swapTransactionBuf);
     const privateKey = getPrivateKeyFromDb(solWallet.privateKey)
     transaction.sign([privateKey]);
     const latestBlockHash = await connection.getLatestBlockhash();

@@ -1,8 +1,9 @@
 "use client"
 import { signIn } from "next-auth/react"
 import Image from "next/image"
+import Link from "next/link"
 
-export default function() {
+export default function Footer() {
     return <div className="">
         <div className="grid justify-center bg-[#007cbf] text-white gap-3 py-20">
             <h1 className="flex text-5xl font-bold ">Try it for yourself</h1>
@@ -18,26 +19,26 @@ export default function() {
         </div>
         <div className="flex justify-between py-20 px-20">
             <div className="grid justify-start">
-                <a href="/">
+                <Link href="/">
                     <Image src={"/tiplinkLogo.svg"} alt={"TipLink Logo"} width={100} height={100} />
-                </a>
-                <a href="https://github.com/NeelContractor/tiplink_project">
+                </Link>
+                <Link href="https://github.com/NeelContractor/tiplink_project">
                     <Image src={"/github_logo.png"} alt={"Github Logo"} width={25} height={25} />
-                </a>
+                </Link>
                 <h1 className="text-gray-400">@2025 TipLink. All rights reserved.</h1>
             </div>
             <div className="flex gap-5">
                 <div className="grid">
                     <h1 className="font-bold text-gray-500">Product & Docs</h1>
-                    <a href="/" className="text-gray-400">Create TipLink</a>
-                    <a href="/docs" className="text-gray-400">Documentation</a>
+                    <Link href="/" className="text-gray-400">Create TipLink</Link>
+                    <Link href="/docs" className="text-gray-400">Documentation</Link>
                 </div>
                 <div className="grid">
                     <h1 className="font-bold text-gray-500">Company</h1>
-                    <a href="/faq" className="text-gray-400">FAQ</a>
-                    <a href="https://github.com/NeelContractor/tiplink_project">
+                    <Link href="/faq" className="text-gray-400">FAQ</Link>
+                    <Link href="https://github.com/NeelContractor/tiplink_project">
                         <h3 className="text-gray-400">Github</h3>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

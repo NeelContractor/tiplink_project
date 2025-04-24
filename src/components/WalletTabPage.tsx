@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PrimaryButton, TabButton } from "./Button";
 import { TokenList } from "./TokenList";
+import Image from "next/image";
 
 type Tab = "tokens" | "send" | "add_fund" | "withdraw" | "swap"
 
@@ -30,6 +31,7 @@ export default function WalletTabPage({ publicKey }: {
         </div>
     }
     
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { tokenBalances, loading } = useTokens(publicKey);
     console.log("token balance: ", tokenBalances)
     console.log("userWallet: ", publicKey)
@@ -41,7 +43,7 @@ export default function WalletTabPage({ publicKey }: {
     return (
         <div className=" rounded-xl bg-white p-5 w-[60vw] h-[60vh] overflow-hidden  shadow-[0px_0px_40px_rgba(0,0,0,0.06)]  sm:p-8 sm:px-10 css-0">
             <div className="flex justify-start bg-white  gap-4">
-                <img src={session.data?.user?.image || ""} className="h-16 w-16 rounded-full" />
+                <Image src={session.data?.user?.image || ""} className="h-16 w-16 rounded-full" alt={"User Profile"} width={100} height={100} />
                 <h1 className="flex justify-center items-center text-[#2d4c5d] text-2xl font-bold">Welcome back, {session.data?.user?.name}!</h1>
             </div>
             <div>
@@ -74,7 +76,7 @@ function Assets({publicKey, tokenBalances, loading}: {
 
     useEffect(() => {
         if (copied) {
-            let timeout = setTimeout(() => {
+            const timeout = setTimeout(() => {
                 setCopied(false)
             }, 3000)
             return () => {

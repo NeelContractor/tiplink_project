@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth"; // Adjust based on your actual file structure
 import db from "@/db"; // Adjust based on your actual file structure
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const session = await getServerSession(authConfig);
     if (!session?.user?.uid) {

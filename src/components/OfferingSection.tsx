@@ -20,7 +20,7 @@ export default function index(): JSX.Element {
                   <div className='flex pb-5'>
                     <div className='outline-none rounded-2xl bg-sky-500 font-bold p-3'>TIPLINK WALLET</div>
                   </div>
-                  <h1 className='text-6xl font-bold pb-5'>The world's simplest wallet</h1>
+                  <h1 className='text-6xl font-bold pb-5'>The world&apos;s simplest wallet</h1>
                   <h3 className='text-xl pb-5'>Create or login to your secured TipLink wallet with just 2 clicks:</h3>
                     <button 
                       className='flex justify-between items-center font-bold rounded-2xl bg-white text-[#007cbf] py-2 px-5'

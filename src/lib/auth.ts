@@ -22,15 +22,17 @@ export const authConfig = {
         })
     ],
     callbacks: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         session: ({ session, token }: any): session => {
             const newSession: session = session as session;
             if (newSession.user && token.uid) {
-              // @ts-ignore
-              newSession.user.uid = token.uid ?? "";
+              
+              newSession.user.uid = token.uid ?? ""; // removed ts-ignore
             }
             return newSession!;
         },
-        async jwt({ token, account, profile }: any) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        async jwt({ token, account }: any) { // removed profile
             const user = await db.user.findFirst({
                 where: {
                     sub: account?.providerAccountId ?? ""
@@ -41,7 +43,8 @@ export const authConfig = {
             }
             return token
         },
-        async signIn({ user, account, profile, email, credentials }: any) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        async signIn({ user, account, profile }: any) { // , email, credentials
             if (account?.provider === "google") {
                 const email = user.email;
                 if (!email) {
@@ -66,8 +69,8 @@ export const authConfig = {
                     data: {
                         username: email,
                         name: profile?.name,
-                        //@ts-ignore
-                        profilePicture: profile?.picture,
+                        
+                        profilePicture: profile?.picture, // removed ts-ignpre
                         provider: "Google",
                         sub: account.providerAccountId,
                         solWallet: {

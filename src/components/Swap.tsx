@@ -5,8 +5,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { PrimaryButton } from "./Button";
 
-export function Swap({ publicKey, tokenBalances }: {
-    publicKey: string;
+export function Swap({ tokenBalances }: {  // removed publicke
+    // publicKey: string;
     tokenBalances: {
         totalBalance: number,
         tokens: TokenWithbalance[]
@@ -60,7 +60,7 @@ export function Swap({ publicKey, tokenBalances }: {
         
          <div className="flex justify-center">
             <div onClick={() => {
-                let baseAssetTemp = baseAsset;
+                const baseAssetTemp = baseAsset;
                 setBaseAsset(quoteAsset);
                 setQuoteAsset(baseAssetTemp);
             }} className="cursor-pointer rounded-full w-10 h-10 border absolute mt-[-20px] bg-white flex justify-center pt-2">
@@ -82,7 +82,7 @@ export function Swap({ publicKey, tokenBalances }: {
                     if (res.data.txnId) {
                         alert("Swap done!");
                     }
-                } catch(e) {
+                } catch {
                     alert("Error while sending a txn")
                 }
             }}>Swap</PrimaryButton>
@@ -90,8 +90,8 @@ export function Swap({ publicKey, tokenBalances }: {
     </div>
 
 }
-
-function SwapInputRow({onSelect, amount, onAmountChange, selectedToken, title, subtitle, topBorderEnabled, bottomBorderEnabled, inputDisabled, inputLoading}: {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function SwapInputRow({onSelect, amount, onAmountChange, selectedToken, title, subtitle, topBorderEnabled, bottomBorderEnabled, inputDisabled, inputLoading}: { // removed selectedToken
     onSelect: (asset: TokenDetails) => void;
     selectedToken: TokenDetails;
     title: string;
@@ -108,7 +108,7 @@ function SwapInputRow({onSelect, amount, onAmountChange, selectedToken, title, s
             <div className="text-xs font-semibold mb-1">
                 {title}
             </div>
-            <AssetSelector selectedToken={selectedToken} onSelect={onSelect} />
+            <AssetSelector  onSelect={onSelect} /> {/* selectedToken={selectedToken} */}
             {subtitle}
         </div>
         <div>
@@ -119,8 +119,8 @@ function SwapInputRow({onSelect, amount, onAmountChange, selectedToken, title, s
     </div>
 }
 
-function AssetSelector({selectedToken, onSelect}: {
-    selectedToken: TokenDetails;
+function AssetSelector({onSelect}: { // removed selectedToken
+    // selectedToken: TokenDetails;
     onSelect: (asset: TokenDetails) => void;
 }) {
     return <div className="w-24">

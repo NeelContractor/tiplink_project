@@ -49,19 +49,19 @@ export default function WalletAppbar({ publicKey }: {
                 <div >
                     <Sheet>
                     <SheetTrigger className="flex rounded-lg bg-white items-center px-2 py-1 hover:cursor-pointer hover:bg-gray-300">
-                    {session.data?.user?.image && (<img src={session.data.user.image} width={30} height={30} className="rounded-full size-8" alt="User profile"/>)}
+                    {session.data?.user?.image && (<Image src={session.data.user.image} width={30} height={30} className="rounded-full size-8" alt="User profile"/>)}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 items-center">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
                         </svg>
                     </SheetTrigger>
                     <SheetContent>
                         <SheetHeader>
-                        <SheetTitle><img src={"/tiplinkLogo.svg"} width={100} height={70} /></SheetTitle>
+                        <SheetTitle><Image src={"/tiplinkLogo.svg"} alt="TipLink Logo" width={100} height={70} /></SheetTitle>
                         <SheetDescription asChild>
                             <div className="flex justify-between items-center">
                                 <div>
                                     {session.data?.user?.image && (
-                                        <img src={session.data.user.image} width={30} height={30} 
+                                        <Image src={session.data.user.image} width={30} height={30} 
                                             className="rounded-full size-15" alt="User profile"
                                             />)}
                                 </div>
@@ -70,7 +70,7 @@ export default function WalletAppbar({ publicKey }: {
                                     <div className="text-black">{session.data?.user?.email}</div>
                                 </div>
                                 <button className="hover:cursor-pointer">
-                                    <img src={"/setting_icon.png"} width={25} height={25}  />
+                                    <Image src={"/setting_icon.png"} alt="Setting" width={25} height={25}  />
                                 </button>
                             </div>
                         </SheetDescription>
@@ -80,7 +80,7 @@ export default function WalletAppbar({ publicKey }: {
                         </SheetDescription>
                         <SheetDescription asChild>
                             <div className="flex justify-center gap-4 h-full w-full border-1 p-3 rounded-lg hover:font-bold hover:bg-gray-100">
-                                <img src={"/exit_icon.png"} height={20} width={20} />
+                                 <Image src={"/exit_icon.png"} alt="Exit" height={20} width={20} />
                                 <button onClick={() => {
                                     signOut({ callbackUrl: "/" })
                                 }}>Log Out</button>

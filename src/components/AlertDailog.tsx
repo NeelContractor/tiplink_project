@@ -2,7 +2,6 @@
 
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -13,6 +12,7 @@ import {
   } from "@/components/ui/alert-dialog"
   import { Button } from "@/components/ui/button"
 import axios from "axios"
+import Image from "next/image"
 import React, { useEffect, useState } from "react"
   
 export function AlertDialogDemo() {
@@ -42,7 +42,7 @@ return (
     <AlertDialog>
     <AlertDialogTrigger asChild>
         <Button variant="outline">
-        <img src={"/setting_icon.png"} width={25} height={25}  />
+            <Image src={"/setting_icon.png"} width={25} height={25} alt={"Setting Image"}  />
         </Button>
     </AlertDialogTrigger>
     <AlertDialogContent>
@@ -53,7 +53,7 @@ return (
         </AlertDialogDescription>
         <AlertDialogDescription className='flex justify-center gap-4'>
             <span className='font-bold '>{privateKey.slice(0, 45) + "..."}</span>
-            <img width="20" height="20" src="https://img.icons8.com/material-rounded/50/copy.png" alt="copy" onClick={() => handleCopy(privateKey)} className='hover:cursor-pointer' title='Copy' />
+            <Image width="20" height="20" src="/copy_icon.png" alt="copy" onClick={() => handleCopy(privateKey)} className='hover:cursor-pointer' title='Copy' />
         </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

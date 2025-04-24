@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PublicKey } from "@solana/web3.js";
 import { createQR, encodeURL } from "@solana/pay";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function DialogDemo() {
   const [userWallet, setUserWallet] = useState<string | null>(null);
@@ -55,7 +56,7 @@ export default function DialogDemo() {
               className="flex w-full text-sm font-mono break-all " 
             >
               <span className='font-medium pr-2'>{userWallet.slice(0, 30) + "..."}</span>
-              <img width="25" height="25" src="https://img.icons8.com/material-rounded/50/copy.png" alt="copy" onClick={() => handleCopy(userWallet)} className='hover:cursor-pointer' title='Copy' />
+              <Image width="20" height="20" src="/copy_icon.png" alt="copy" onClick={() => handleCopy(userWallet)} className='hover:cursor-pointer' title='Copy' />
             </div>
           </div>
         ) : (

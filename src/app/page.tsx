@@ -27,9 +27,9 @@ export default function Home() {
         </h1>
         <h1 className="flex justify-center pt-4 text-2xl text-gray-500">Create a frictionless wallet with just a Google Account.</h1>
         <div className="flex justify-center pt-10">
-          <PrimaryButton children={"Sign Up with Google"} onClick={() => {
+          <PrimaryButton onClick={() => {
             signIn("google", { callbackUrl: "/dashboard" })
-          }} />
+          }} >Sign Up with Google</PrimaryButton>
         </div>
       </div>
       <div className="py-20">

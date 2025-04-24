@@ -11,7 +11,7 @@ export default function Gestures() {
         >
             <div>
                 <h1 className=" text-[#007cbf] font-bold">TipLink Wallet</h1>
-                <p className="text-sm font-light text-gray-700">The world's simplest wallet</p>
+                <p className="text-sm font-light text-gray-700">The world&apos;s simplest wallet</p>
             </div>
             <div className="relative">
                 <Image src={"/tiplink_pic1.webp"} alt={"TipLink pic"} width={700} height={600} className="w-full h-full" />
