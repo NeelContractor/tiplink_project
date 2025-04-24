@@ -46,7 +46,7 @@ export const ProfileCard = ({ publicKey }: {
             image={session.data.user.image ?? ""} 
             name={session.data?.user?.name ?? ""} 
         />
-        <div className="w-full flex px-10 rounded-b-lg">
+        <div className="flex w-full px-10 rounded-b-lg mb-5">
             {tabs.map(tab => <TabButton key={tab.id} active={tab.id === selectedTab} onClick={() => {
                 setSelectedTab(tab.id)
             }}>{tab.name}</TabButton>)}
@@ -74,6 +74,9 @@ function Send() {
 
     return (
         <div className="grid gap-4 justify-center bg-gray-100 py-10">
+            <div>
+                <h1 className="text-2xl font-bold pb-4 text-center">Send Tokens</h1>
+            </div>
             <div className="grid justify-center gap-4">
                 <input 
                     placeholder="Recevier Public Key" 
