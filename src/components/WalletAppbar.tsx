@@ -75,7 +75,6 @@ export default function WalletAppbar({ publicKey }: {
                             </div>
                         </SheetDescription>
                         <SheetDescription>
-                            {/* <div className="flex border-1 rounded-lg p-1 text-lg text-black justify-center items-center">Wallet Address</div> */}
                             <DialogDemo /> 
                         </SheetDescription>
                         <SheetDescription asChild>
